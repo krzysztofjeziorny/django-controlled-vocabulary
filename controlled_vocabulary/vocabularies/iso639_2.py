@@ -6,6 +6,7 @@ class VocabularyISO639_2(VocabularyBaseCSV):
     http://lists.xml.org/archives/xml-dev/200108/msg00758.html
     e.g. french: fre (B), fra (T); german: ger (B), deu (T)
     """
+
     prefix = "iso639-2"
     label = "ISO 639-2"
     base_url = "http://id.loc.gov/vocabulary/iso639-2/"
@@ -31,7 +32,7 @@ class VocabularyISO639_2(VocabularyBaseCSV):
 
         if line[1].strip():
             ret.append([line[1], line[3]])
-            ret[0].append('B')
-            ret[1].append('T')
+            ret[0].append("B")
+            ret[1].append("T")
 
         return ret

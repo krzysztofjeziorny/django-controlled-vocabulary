@@ -3,7 +3,6 @@ import os
 import re
 
 from ..settings import get_var
-from .base import VocabularyBase, chrono
 from .base_list import VocabularyBaseList
 
 
@@ -40,7 +39,7 @@ class VocabularyBaseCSV(VocabularyBaseList):
         """
         # example: returns one term where termid = first cell, label = second
         return [[line[0], line[1]]]
-        raise Exception('This function should be overridden')
+        raise Exception("This function should be overridden")
 
     def _get_data_root(self):
         ret = get_var("DATA_ROOT")
@@ -117,35 +116,33 @@ class VocabularyBaseCSV(VocabularyBaseList):
         """
         ret = input_path
 
-        extract_pattern = self.source.get('extract', None)
+        extract_pattern = self.source.get("extract", None)
         if extract_pattern:
             ret = None
-            if input_path.endswith('.zip'):
+            if input_path.endswith(".zip"):
                 import zipfile
-                with zipfile.ZipFile(input_path, 'r') as zh:
+
+                with zipfile.ZipFile(input_path, "r") as zh:
                     for info in zh.infolist():
                         if fnmatch.fnmatch(info.filename, extract_pattern):
                             ret = zh.extract(info, self._get_data_root())
                             break
             else:
                 raise Exception(
-                    'Type of vocabulary archive not supported {}'.format(
-                        input_path
-                    )
+                    "Type of vocabulary archive not supported {}".format(input_path)
                 )
 
         if ret is None:
-            raise Exception('"{}" not found in archive {}'.format(
-                extract_pattern, input_path
-            ))
+            raise Exception(
+                '"{}" not found in archive {}'.format(extract_pattern, input_path)
+            )
 
         return ret
 
     def _rename_file(self, input_path):
-        """rename input_path into source['processed']
-        """
+        """rename input_path into source['processed']"""
         ret = input_path
-        processed = self.source.get('processed', None)
+        processed = self.source.get("processed", None)
         if processed:
             ret = self._get_absolute_path(processed)
             os.rename(input_path, ret)
@@ -161,7 +158,7 @@ class VocabularyBaseCSV(VocabularyBaseList):
         """
         ret = None
         if not unprocessed:
-            ret = self.source.get('processed', None)
+            ret = self.source.get("processed", None)
 
         if not ret:
             ret = os.path.basename(self.source["url"])
@@ -170,4 +167,3 @@ class VocabularyBaseCSV(VocabularyBaseList):
 
     def _get_absolute_path(self, relative_path):
         return os.path.join(self._get_data_root(), relative_path)
-

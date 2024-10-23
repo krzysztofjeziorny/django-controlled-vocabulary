@@ -1,5 +1,3 @@
-import json
-
 from .base_http import VocabularyHTTP
 
 

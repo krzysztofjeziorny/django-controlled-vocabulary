@@ -56,12 +56,16 @@ class VocabularyBaseList(VocabularyBase):
                 score = 0
                 label = term[1].lower()
                 tid = term[0].lower()
-                if pattern in label: score += 1
-                if term[0].lower() == pattern: score += 4
+                if pattern in label:
+                    score += 1
+                if term[0].lower() == pattern:
+                    score += 4
                 if score:
-                    if label.startswith(pattern): score += 1
-                    if label == pattern: score += 1
-                    desc = ''
+                    if label.startswith(pattern):
+                        score += 1
+                    if label == pattern:
+                        score += 1
+                    desc = ""
                     if len(term) > 2:
                         desc = term[2]
                     ret.append([term[0], term[1], desc, score])

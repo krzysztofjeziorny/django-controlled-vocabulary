@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
@@ -41,6 +41,7 @@ OPTIONS:
     def create_parser(self, *args, **kwargs):
         parser = super(Command, self).create_parser(*args, **kwargs)
         from argparse import RawTextHelpFormatter
+
         # to avoid the above help text to be displayed on a single line
         parser.formatter_class = RawTextHelpFormatter
         return parser
@@ -49,11 +50,15 @@ OPTIONS:
         parser.add_argument("action", nargs=1, type=str)
 
         parser.add_argument(
-            "-f", action="store", help="list of vocabulary prefixes",
+            "-f",
+            action="store",
+            help="list of vocabulary prefixes",
         )
 
         parser.add_argument(
-            "-p", action="store", help="a string pattern to look up",
+            "-p",
+            action="store",
+            help="a string pattern to look up",
         )
 
     def handle(self, *args, **options):
@@ -63,6 +68,7 @@ OPTIONS:
         action = options["action"][0]
 
         from django.apps import apps
+
         self.app = apps.get_app_config("controlled_vocabulary")
 
         action_method = getattr(self, "action_" + action, None)
@@ -71,6 +77,7 @@ OPTIONS:
             res = action_method()
             if res not in [None, True]:
                 import sys
+
                 sys.exit(1)
 
         if show_help:
@@ -79,11 +86,12 @@ OPTIONS:
             self.stdout.write("done (vocab {})".format(action))
 
     def action_search(self):
-        pattern = (self.options['p'] or '').strip()
+        pattern = (self.options["p"] or "").strip()
         prefixes = self._get_prefixes()
         if not (prefixes and pattern):
-            self.stdout.write("Please use -f and -p "
-                              "to pass a vocabulary prefix and a pattern")
+            self.stdout.write(
+                "Please use -f and -p " "to pass a vocabulary prefix and a pattern"
+            )
 
         for prefix in prefixes:
             manager = self.app.get_vocabulary_manager(prefix)
@@ -114,7 +122,7 @@ OPTIONS:
                 for voc in vocs.values():
                     self.stdout.write(voc.__module__)
             else:
-                self.stdout.write('Please run django migrate.')
+                self.stdout.write("Please run django migrate.")
 
     def action_refetch(self):
         return self.action_fetch(True)

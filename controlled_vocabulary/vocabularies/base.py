@@ -20,6 +20,7 @@ def fetch(url):
     """Returns the content at the given url.
     Returns None is status != 200."""
     import urllib3
+
     ret = None
 
     # TODO: error management

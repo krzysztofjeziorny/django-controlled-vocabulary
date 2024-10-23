@@ -2,8 +2,8 @@ from .base_csv import VocabularyBaseCSV
 
 
 class VocabularyISO15924(VocabularyBaseCSV):
-    """https://www.unicode.org/iso15924/codelists.html
-    """
+    """https://www.unicode.org/iso15924/codelists.html"""
+
     # TODO: TBC
     prefix = "iso15924"
     label = "ISO 15924"
@@ -14,12 +14,12 @@ class VocabularyISO15924(VocabularyBaseCSV):
     source = {
         "url": "https://www.unicode.org/iso15924/iso15924.txt",
         "processed": "iso15924-utf8.txt",
-        'delimiter': ';',
+        "delimiter": ";",
     }
 
     def _get_terms_from_csv_line(self, line):
         ret = []
-        if not line[0].startswith('#'):
+        if not line[0].startswith("#"):
             ret = [[line[0], line[2]]]
 
         return ret
