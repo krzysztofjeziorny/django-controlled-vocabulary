@@ -11,10 +11,6 @@ keywords = ["controlled-vocabulary", "linked-data", "vocabulary", "metadata"]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Environment :: Web Environment",
-  "Framework :: Django :: 2.2",
-  "Framework :: Django :: 3.0",
-  "Framework :: Django :: 3.1",
-  "Framework :: Django :: 3.2",
   "Framework :: Django :: 4.2",
   "Framework :: Django :: 5.1",
   "Operating System :: OS Independent",
@@ -24,7 +20,7 @@ packages = [{ include = "controlled_vocabulary" }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-django = ">=2.2,<5.2"
+django = ">=4.2,<5.2"
 urllib3 = "^2.2.3"
 # only included because they are referenced by .extras
 tox = { version = "^4.23.2", optional = true }
@@ -33,6 +29,7 @@ coverage = { version = "^7.6.4", optional = true }
 [tool.poetry.dev-dependencies]
 tox = "^4.23.2"
 coverage = "^7.6.4"
+setuptools = "^75.2.0"
 
 [tool.poetry.extras]
 # .extras used used by tox
