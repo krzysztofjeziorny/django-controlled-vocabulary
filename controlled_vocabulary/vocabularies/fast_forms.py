@@ -1,5 +1,6 @@
-from .base_http import VocabularyHTTP
 import re
+
+from .base_http import VocabularyHTTP
 
 
 class VocabularyFastForms(VocabularyHTTP):

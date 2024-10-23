@@ -1,5 +1,7 @@
-from django.apps import AppConfig
 from importlib import import_module
+
+from django.apps import AppConfig
+
 from .settings import get_var
 
 
@@ -8,9 +10,9 @@ class ControlledVocabularyConfig(AppConfig):
     verbose_name = "Controlled Vocabulary"
 
     def ready(self):
-        '''This is called by django when the project starts running.
+        """This is called by django when the project starts running.
         But before migrations (so the tables may not already exist!).
-        '''
+        """
         import os
 
         root = get_var("DATA_ROOT")
@@ -21,16 +23,16 @@ class ControlledVocabularyConfig(AppConfig):
 
     @classmethod
     def get_vocabulary_manager(cls, prefix):
-        '''Returns the vocabulary manager for the given vocabulary prefix.
+        """Returns the vocabulary manager for the given vocabulary prefix.
         This is a unique instance (singleton).
-        '''
+        """
         from django.apps import apps
 
         app = apps.get_app_config(cls.name)
         return app.vocabulary_managers.get(prefix, None)
 
     def write_vocabulary_records_from_managers(self):
-        '''see _write_vocabulary_records_from_managers'''
+        """see _write_vocabulary_records_from_managers"""
         vocabulary_model = self._get_vocabulary_model()
         from .models import ControlledTerm
         return self._write_vocabulary_records_from_managers(
@@ -40,11 +42,11 @@ class ControlledVocabularyConfig(AppConfig):
     def write_vocabulary_records_from_managers_during_migration(
         self, migration_apps
     ):
-        '''
+        """
         see _write_vocabulary_records_from_managers().
         migration safe; migration_apps is the django app registry, see
         https://docs.djangoproject.com/en/3.0/topics/migrations/#data-migrations
-        '''
+        """
         vocabulary_model = migration_apps.get_model(
             'controlled_vocabulary', 'ControlledVocabulary'
         )
@@ -105,8 +107,9 @@ class ControlledVocabularyConfig(AppConfig):
 
         module_paths = get_var("VOCABULARIES")
 
-        from .vocabularies.base import VocabularyBase as voc_base
         import inspect
+
+        from .vocabularies.base import VocabularyBase as voc_base
 
         for path in module_paths:
             try:

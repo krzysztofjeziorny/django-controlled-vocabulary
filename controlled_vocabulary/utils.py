@@ -28,7 +28,6 @@ def search_term(
 
     Throws an exception if no vocabulary with that prefix is found.
     """
-
     # try the DB first
     from django.db.models import Q
 

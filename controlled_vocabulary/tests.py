@@ -115,7 +115,6 @@ class ControlledVocTestCase(TestCase):
         """base_list.search() should lookup termid as well as label
         See gh-8
         """
-
         prefix = "iso639-2"
         termid = "glv"
         label = "Manx"

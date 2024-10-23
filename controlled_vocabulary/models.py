@@ -6,6 +6,7 @@ from django.db import models
 from django.forms.widgets import SelectMultiple
 from django.urls.base import reverse
 
+
 LENGTH_LABEL = 200
 LENGTH_IDENTIFIER = 50
 # TODO: make that a config setting
@@ -228,7 +229,6 @@ class ControlledTermField(models.ForeignKey):
 
             vocabularies='myvoc' is syntactic sugar for ['myvoc']
         """
-
         self.vocabularies = vocabularies
 
         super().__init__(to, on_delete, related_name, *args, **kwargs)
@@ -258,7 +258,6 @@ class ControlledTermsField(models.ManyToManyField):
         **kwargs
     ):
         """vocabularies: see ControlledTermField"""
-
         self.vocabularies = vocabularies
 
         super().__init__(to, related_name, *args, **kwargs)

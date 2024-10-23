@@ -1,5 +1,6 @@
-from .base_http import VocabularyHTTP
 import json
+
+from .base_http import VocabularyHTTP
 
 
 class VocabularyWikidata(VocabularyHTTP):

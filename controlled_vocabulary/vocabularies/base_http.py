@@ -1,5 +1,6 @@
-from .base import VocabularyBase, fetch
 import json
+
+from .base import VocabularyBase, fetch
 
 
 class VocabularyHTTP(VocabularyBase):

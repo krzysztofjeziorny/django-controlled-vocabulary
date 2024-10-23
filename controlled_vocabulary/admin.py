@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import ControlledVocabulary, ControlledTerm
 from django.utils.safestring import mark_safe
+
+from .models import ControlledTerm, ControlledVocabulary
 
 
 class TermInline(admin.TabularInline):

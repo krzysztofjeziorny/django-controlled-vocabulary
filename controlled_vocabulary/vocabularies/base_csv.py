@@ -1,10 +1,10 @@
 import fnmatch
-
-from .base import VocabularyBase, chrono
-from .base_list import VocabularyBaseList
-from ..settings import get_var
 import os
 import re
+
+from ..settings import get_var
+from .base import VocabularyBase, chrono
+from .base_list import VocabularyBaseList
 
 
 class VocabularyBaseCSV(VocabularyBaseList):
@@ -32,12 +32,12 @@ class VocabularyBaseCSV(VocabularyBaseList):
     }
 
     def _get_terms_from_csv_line(self, line):
-        '''Subclass should override this method.
+        """Subclass should override this method.
         line: an list of values from a csv row
         return a list of terms, each term has the form:
             [termid, label]
             [termid, label, description]
-        '''
+        """
         # example: returns one term where termid = first cell, label = second
         return [[line[0], line[1]]]
         raise Exception('This function should be overridden')
@@ -103,8 +103,8 @@ class VocabularyBaseCSV(VocabularyBaseList):
         return [url, filepath, size, downloaded]
 
     def _process_file(self, input_path):
-        '''optionally transform the downloaded file
-        or extract something from it.'''
+        """optionally transform the downloaded file
+        or extract something from it."""
         ret = input_path
         ret = self._extract_file(ret)
         ret = self._rename_file(ret)
@@ -112,9 +112,9 @@ class VocabularyBaseCSV(VocabularyBaseList):
         return ret
 
     def _extract_file(self, input_path):
-        '''extract a file from an archive.
+        """extract a file from an archive.
         Currently supported: .zip
-        '''
+        """
         ret = input_path
 
         extract_pattern = self.source.get('extract', None)
@@ -142,8 +142,8 @@ class VocabularyBaseCSV(VocabularyBaseList):
         return ret
 
     def _rename_file(self, input_path):
-        '''rename input_path into source['processed']
-        '''
+        """rename input_path into source['processed']
+        """
         ret = input_path
         processed = self.source.get('processed', None)
         if processed:
@@ -153,12 +153,12 @@ class VocabularyBaseCSV(VocabularyBaseList):
         return ret
 
     def _get_filepath(self, unprocessed=False):
-        '''returns the path to the file that contains the terms.
+        """returns the path to the file that contains the terms.
         If unprocessed is False: returns the path to the processed file
             (i.e. a CSV)
         Otherwise, returns the path to the 'raw' downloaded file.
             If there is no processing, it will be the same as unprocessed=False
-        '''
+        """
         ret = None
         if not unprocessed:
             ret = self.source.get('processed', None)

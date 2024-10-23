@@ -1,5 +1,6 @@
-from .base_csv import VocabularyBaseCSV
 import re
+
+from .base_csv import VocabularyBaseCSV
 
 
 def decamel(keyword):

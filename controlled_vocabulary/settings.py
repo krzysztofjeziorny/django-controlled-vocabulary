@@ -1,8 +1,9 @@
 import os
 
+from django.conf import settings
+
 from .defaults import *  # noqa
 
-from django.conf import settings
 
 """
 Default dynamic settings for the controlled_vocabulary app
