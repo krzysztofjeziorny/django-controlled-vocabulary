@@ -35,32 +35,24 @@ class ControlledVocabularyConfig(AppConfig):
         """see _write_vocabulary_records_from_managers"""
         vocabulary_model = self._get_vocabulary_model()
         from .models import ControlledTerm
+
         return self._write_vocabulary_records_from_managers(
             vocabulary_model, ControlledTerm
         )
 
-    def write_vocabulary_records_from_managers_during_migration(
-        self, migration_apps
-    ):
+    def write_vocabulary_records_from_managers_during_migration(self, migration_apps):
         """
         see _write_vocabulary_records_from_managers().
         migration safe; migration_apps is the django app registry, see
         https://docs.djangoproject.com/en/3.0/topics/migrations/#data-migrations
         """
         vocabulary_model = migration_apps.get_model(
-            'controlled_vocabulary', 'ControlledVocabulary'
+            "controlled_vocabulary", "ControlledVocabulary"
         )
-        term_model = migration_apps.get_model(
-            'controlled_vocabulary', 'ControlledTerm'
-        )
-        self._write_vocabulary_records_from_managers(
-            vocabulary_model,
-            term_model
-        )
+        term_model = migration_apps.get_model("controlled_vocabulary", "ControlledTerm")
+        self._write_vocabulary_records_from_managers(vocabulary_model, term_model)
 
-    def _write_vocabulary_records_from_managers(
-        self, vocabulary_model, term_model
-    ):
+    def _write_vocabulary_records_from_managers(self, vocabulary_model, term_model):
         """
         Create or update the ControlledVocabulary db records
         with metadata from the voc manager modules listed in

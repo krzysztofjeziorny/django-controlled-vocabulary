@@ -2,7 +2,6 @@ import urllib.parse
 
 from django.http import JsonResponse
 from django.http.response import Http404
-from django.shortcuts import render
 from django.views.generic.list import ListView
 
 from .models import ControlledTerm, ControlledVocabulary

@@ -1,4 +1,3 @@
-import re
 from typing import Optional
 
 from .apps import ControlledVocabularyConfig
@@ -39,9 +38,7 @@ def search_term(
 
     # search using the voc manager
     vocabulary = ControlledVocabulary.objects.get(prefix=prefix)
-    manager = ControlledVocabularyConfig.get_vocabulary_manager(
-        vocabulary.prefix
-    )
+    manager = ControlledVocabularyConfig.get_vocabulary_manager(vocabulary.prefix)
 
     pattern = pattern.lower()
     terms = manager.search(pattern)
@@ -88,5 +85,3 @@ def search_term_or_none(
             pass
 
     return ret
-
-

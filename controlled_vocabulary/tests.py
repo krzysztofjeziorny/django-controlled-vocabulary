@@ -1,11 +1,8 @@
-from django.contrib import admin
-from django.core import management
 from django.test import TestCase
 
 from .apps import ControlledVocabularyConfig
 from .models import (
     ControlledTerm,
-    ControlledTermField,
     ControlledVocabulary,
     term_create_from_string,
 )

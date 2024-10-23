@@ -3,7 +3,6 @@ import urllib.parse
 from django import forms
 from django.contrib.admin.widgets import AutocompleteSelect, AutocompleteSelectMultiple
 from django.db import models
-from django.forms.widgets import SelectMultiple
 from django.urls.base import reverse
 
 
@@ -196,7 +195,6 @@ class ControlledTermWidget(ControlledTermWidgetMixin, AutocompleteSelect):
 
 class ControlledTermsWidget(ControlledTermWidgetMixin, AutocompleteSelectMultiple):
     def _value_from_datadict(self, value):
-
         ret = value
 
         if isinstance(ret, list):
@@ -213,7 +211,7 @@ class ControlledTermField(models.ForeignKey):
         on_delete=models.SET_NULL,
         related_name="+",
         *args,
-        **kwargs
+        **kwargs,
     ):
         """
         vocabularies: a list of vocabularies the user can chose terms from.
@@ -255,7 +253,7 @@ class ControlledTermsField(models.ManyToManyField):
         to="controlled_vocabulary.ControlledTerm",
         related_name="+",
         *args,
-        **kwargs
+        **kwargs,
     ):
         """vocabularies: see ControlledTermField"""
         self.vocabularies = vocabularies
