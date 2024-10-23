@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-controlled-vocabulary"
-version = "0.12"
+version = "0.13"
 description = "Link your data to authority lists or your own controlled lists"
 authors = ["geoffroy-noel-ddh <geoffroy.noel@kcl.ac.uk>"]
 license = "MIT"
@@ -15,26 +15,24 @@ classifiers = [
   "Framework :: Django :: 3.0",
   "Framework :: Django :: 3.1",
   "Framework :: Django :: 3.2",
+  "Framework :: Django :: 4.2",
+  "Framework :: Django :: 5.1",
   "Operating System :: OS Independent",
 ]
-include = [
-  "LICENSE",
-]
-packages = [
-  {include = "controlled_vocabulary"}
-]
+include = ["LICENSE"]
+packages = [{ include = "controlled_vocabulary" }]
 
 [tool.poetry.dependencies]
-python = "^3.5"
-django = ">=2.2,<3.3"
-urllib3 = "^1.25"
+python = "^3.9"
+django = ">=2.2,<5.2"
+urllib3 = "^2.2.3"
 # only included because they are referenced by .extras
-tox = { version = "^3.0", optional = true }
-coverage = { version = "^4.5", optional = true}
+tox = { version = "^4.23.2", optional = true }
+coverage = { version = "^7.6.4", optional = true }
 
 [tool.poetry.dev-dependencies]
-tox = "^3.0"
-coverage = "^4.5"
+tox = "^4.23.2"
+coverage = "^7.6.4"
 
 [tool.poetry.extras]
 # .extras used used by tox
